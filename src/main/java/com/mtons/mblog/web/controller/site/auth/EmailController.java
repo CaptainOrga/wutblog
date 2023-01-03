@@ -41,22 +41,49 @@ public class EmailController extends BaseController {
 
         String key = email;
 
+//        switch (type) {
+//            case Consts.CODE_BIND:
+//                AccountProfile profile = getProfile();
+//                Assert.notNull(profile, "请先登录后再进行此操作");
+//                key = String.valueOf(profile.getId());
+//
+//                UserVO exist = userService.getByEmail(email);
+//                Assert.isNull(exist, "该邮箱已被使用");
+//                break;
+//            case Consts.CODE_FORGOT:
+//                UserVO user = userService.getByEmail(email);
+//                Assert.notNull(user, "账户不存在");
+//                key = String.valueOf(user.getId());
+//                break;
+//            case Consts.CODE_REGISTER:
+//                key = email;
+//                break;
+//        }
+
         switch (type) {
             case Consts.CODE_BIND:
                 AccountProfile profile = getProfile();
-                Assert.notNull(profile, "请先登录后再进行此操作");
-                key = String.valueOf(profile.getId());
+                if(profile==null){
+                    return Result.failure("请先登录后再进行此操作");
+                }
 
-                UserVO exist = userService.getByEmail(email);
-                Assert.isNull(exist, "该邮箱已被使用");
+                UserVO exist1 = userService.getByEmail(email);
+                if(exist1!=null){
+                    return Result.failure("该邮箱已被使用");
+                }
                 break;
             case Consts.CODE_FORGOT:
-                UserVO user = userService.getByEmail(email);
-                Assert.notNull(user, "账户不存在");
-                key = String.valueOf(user.getId());
+                UserVO exist2 = userService.getByEmail(email);
+                if(exist2==null){
+                    return Result.failure("账户不存在");
+                }
                 break;
             case Consts.CODE_REGISTER:
                 key = email;
+                UserVO exist3 = userService.getByEmail(email);
+                if(exist3!=null){
+                    return Result.failure("该邮箱已被使用");
+                }
                 break;
         }
 

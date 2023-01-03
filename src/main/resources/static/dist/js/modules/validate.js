@@ -83,9 +83,15 @@ define(function(require, exports, module) {
             });
 
             J(sendCodeButtonId).click(function () {
+                debugger;
                 var btn = J(this).button('sending');
                 var email = J('input[name=email]').val();
+                if (email==''){
+                    J('#message').html('<div class="alert alert-success">邮箱账号不能为空！</div>');
+                    return;
+                }
                 J.getJSON(_BATH + '/email/send_code', {'email': email, 'type': 3}, function (data) {
+                    debugger;
                     if (data.code === 0) {
                         btn.text('重新发送');
                         J('#message').html('<div class="alert alert-success">' + data.message + '</div>');
@@ -95,6 +101,25 @@ define(function(require, exports, module) {
 
                     btn.button('reset');
                 });
+                debugger;
+                var time = 60;
+                settime($(this));
+                function settime(obj){
+                    if (time==0) {
+                        $(obj).attr('disabled', false);
+                        btn.text('重新发送');
+                        time = 60;
+                        return;
+                    } else{
+                        $(obj).attr('disabled', true);
+                        btn.text(time+"秒后重新发送");
+                        time--;
+                    }
+                    setTimeout(function() {
+                        settime(obj)
+                    },1000)
+                }
+
             });
         },
         oauthRegister: function (formId) {
@@ -179,8 +204,31 @@ define(function(require, exports, module) {
             });
 
             J(sendCodeButtonId).click(function () {
+                debugger;
                 var btn = J(this).button('sending');
                 var email = J('input[name=email]').val();
+                if (email==''){
+                    J('#message').html('<div class="alert alert-success">邮箱账号不能为空！</div>');
+                    return;
+                }
+
+                var time = 60;
+                settime($(this));
+                function settime(obj){
+                    if (time==0) {
+                        $(obj).attr('disabled', false);
+                        btn.text('重新发送');
+                        time = 60;
+                        return;
+                    } else{
+                        $(obj).attr('disabled', true);
+                        btn.text(time+"秒后重新发送");
+                        time--;
+                    }
+                    setTimeout(function() {
+                        settime(obj)
+                    },1000)
+                }
                 J.getJSON(_BATH + '/email/send_code', {'email': email, 'type': 1}, function (data) {
                     if (data.code === 0) {
                         btn.text('重新发送');

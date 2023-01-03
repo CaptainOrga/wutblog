@@ -33,9 +33,6 @@
  IDE得装lombok插件
 ```
 
-- 文档: [说明文档](https://langhsu.github.io/mblog/#/)
-- 官网: [官网地址](http://www.mtons.com)
-- QQ交流群：378433412
     
 ### 版本(4.0)更新内容：
     1. 新增 <@layout.extends name="xxx"></layout.extends> 标签, 用于进入模板文件, 解决主题开发时各种路径带入主题名的问题
@@ -76,8 +73,3 @@
  ![输入图片说明](https://images.gitee.com/uploads/images/2019/0414/175116_449ed877_1758849.jpeg "1.jpg")
  ![输入图片说明](https://images.gitee.com/uploads/images/2019/0414/175353_6185e4f1_1758849.jpeg "2.jpg")
 
-### 扩展主题
-[Youth 主题传送门](https://pan.baidu.com/s/1tBwtprEAuCqcqDhVBunMGA) (作者:小崔崔)(提取码: 25e9)
-
-
-- 感谢开发主题大佬们的无私奉献

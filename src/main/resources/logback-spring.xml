@@ -28,8 +28,8 @@
         <appender-ref ref="rollingFile" />
     </appender>
 
-    <logger name="org.springframework" level="WARN"/>
-    <logger name="org.hibernate.SQL" level="WARN"/>
+    <logger name="org.springframework" level="DEBUG"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
 
     <springProfile name="dev">
         <root level="info">

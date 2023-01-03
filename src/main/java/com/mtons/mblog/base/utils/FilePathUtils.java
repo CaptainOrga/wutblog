@@ -5,6 +5,9 @@ package com.mtons.mblog.base.utils;
 
 import org.apache.commons.text.RandomStringGenerator;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author langhsu
  *
@@ -40,8 +43,10 @@ public class FilePathUtils {
 	 * @return 10位长度文件名+文件后缀
 	 */
 	public static String wholePathName(String originalFilename, String key) {
+		String time = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		StringBuilder builder = new StringBuilder(52);
 		builder.append("/_signature/");
+		builder.append(time+"/");
 		builder.append(key);
 		builder.append(FileKit.getSuffix(originalFilename));
 		return builder.toString();

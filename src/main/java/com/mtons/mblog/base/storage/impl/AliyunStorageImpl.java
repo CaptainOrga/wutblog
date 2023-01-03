@@ -19,6 +19,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author langhsu
@@ -54,7 +56,7 @@ public class AliyunStorageImpl extends AbstractStorage implements Storage {
                 src = src + "/";
             }
         }
-
+        src = src + new SimpleDateFormat("yyyyMMdd").format(new Date()) + "/";
         String key = UpYunUtils.md5(bytes);
         String path = src + key + FileKit.getSuffix(pathAndFileName);
         OSSClient client = builder();
